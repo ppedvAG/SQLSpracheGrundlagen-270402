@@ -242,6 +242,122 @@ where
         customerid >= 'A' and Customerid < 'F'
 
 
+ --WILDCARDS
+
+ -- soll mit A beginnen
+ -- soll mit L enden
+ -- es soll chinese irgendow im Namen stehen
+
+ --funktioneren nur mit LIKE!!
+
+ where spalte like ....
+
+ -- % = beliebig viele Zeichen , sind auch 0 Zeichen sein
+ -- _ = genau ein Zeichen
+
+
+
+ where spalte like '%y%'    --irgendwo ein y
+ where spalte like '_y%'    --zweites Zeichen ist ein y
+ 
+ where spalte like 'y%'     --muss mit y beginnen
+
+
+ where spalte like '%y'     --muss mit y enden
+
+
+ --Gibt es Firmenname, die ein y im Namen haben
+
+
+ select companyname as Firma from customers
+ where 
+         companyname like '%y%'
+
+
+--Es gab doch da ein Produkt , das irgendwie sauerkraut hieß---
+--wie war da gleich nochmal die Produktnummer
+
+
+select p.ProductName, p.ProductID
+from products p
+where 
+       p.ProductName like '%sauerkraut%' 
+
+
+als vorletzten Buchstaben ein L im Firmennamen haben
+und mit B beginnen
+
+
+select c.CompanyName from customers   c
+where
+       c.CompanyName  like 'B%L_'
+
+
+
+'01_3__543_3_1'
+
+
+--Zeige mir alle Kunden, die mit A , b , c beginnen
+--und mit l, m, n enden
+--
+
+--und dazwischen ein a oder e oder i
+
+ where spalte like < 'd'
+
+
+ --Bereiche könne mit [ ] definiert werden
+ -- eine [] steht für genau 1 Zeichen
+
+ -- [efgh]  also e oder f oder g oder h
+ -- [e-h]
+ -- geht auch mit Zahlen [0-9]
+
+ where spalte like '[abc]%[aei]%[lmn]'
+
+
+ where spalte not like '[amosz]'
+
+
+ --PIN über Website möglich
+
+ -- A07B
+
+
+ --wie finde ich alle , die keine ordentliche PIN haben
+ -- wie finde ich alle die eine korrekte PIN haben
+
+
+ where PIN not like '[0-9][0-9][0-9][0-9]'
+
+ where PIN < 10000
+
+ 0043
+
+
+--Suche alle Firmenname, die ein ' im Namen haben
+
+select * from customers
+where 
+        companyname like  '%''%'   --suche nach '
+
+--suche nach allen Firmen, wo ein Prozentzeichen vorkommt
+
+select * from customers
+where CompanyName like '%[%]%'
+
+--seit SQL 2025 gibt es RegEx
+
+
+
+^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?)+$
+
+
+
+
+
+
+
 
 
 
